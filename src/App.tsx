@@ -20,6 +20,7 @@ function App() {
         </a>
 
         <img src="portada.png"  alt="logo" />
+        
       </header>
     </div>
   );
