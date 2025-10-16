@@ -16,8 +16,10 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Aliens in Valheim
         </a>
+
+        <img src="portada.png"  alt="logo" />
       </header>
     </div>
   );
