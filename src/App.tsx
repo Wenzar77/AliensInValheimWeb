@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import logo from './logo.svg';
+import './i18n'; // inicializa i18n
+import { useTranslation } from 'react-i18next';
 import {
   CssBaseline,
   AppBar,
@@ -13,6 +15,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Button,
 } from '@mui/material';
 
 interface TabPanelProps {
@@ -43,10 +46,15 @@ function a11yProps(index: number) {
 }
 
 function App(): JSX.Element {
+  const { t, i18n } = useTranslation();
   const [value, setValue] = useState<number>(0);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+  };
+
+  const setLang = (lng: string) => {
+    void i18n.changeLanguage(lng);
   };
 
   return (
@@ -61,8 +69,14 @@ function App(): JSX.Element {
             style={{ width: 40, marginRight: 12 }}
           />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Aliens in Valheim
+            {t('app.title')}
           </Typography>
+          <Button color="inherit" onClick={() => setLang('es')}>
+            {t('lang.es')}
+          </Button>
+          <Button color="inherit" onClick={() => setLang('en')}>
+            {t('lang.en')}
+          </Button>
         </Toolbar>
       </AppBar>
 
@@ -73,116 +87,71 @@ function App(): JSX.Element {
             onChange={handleChange}
             variant="scrollable"
             scrollButtons="auto"
-            aria-label="Pestañas de contenido del mod Aliens in Valheim"
+            aria-label={t('app.title')}
           >
-            <Tab label="Introducción" {...a11yProps(0)} />
-            <Tab label="Items & Reglas" {...a11yProps(1)} />
-            <Tab label="Fase 1 - Abducción" {...a11yProps(2)} />
-            <Tab label="Fase 2 - Ataque" {...a11yProps(3)} />
-            <Tab label="Fase 3 - Señales" {...a11yProps(4)} />
-            <Tab label="Fase 4 - Colmena" {...a11yProps(5)} />
+            <Tab label={t('tabs.intro')} {...a11yProps(0)} />
+            <Tab label={t('tabs.items')} {...a11yProps(1)} />
+            <Tab label={t('tabs.phase1')} {...a11yProps(2)} />
+            <Tab label={t('tabs.phase2')} {...a11yProps(3)} />
+            <Tab label={t('tabs.phase3')} {...a11yProps(4)} />
+            <Tab label={t('tabs.phase4')} {...a11yProps(5)} />
           </Tabs>
         </Box>
 
         <TabPanel value={value} index={0}>
           <Typography variant="h5" gutterBottom>
-            Resumen
+            {t('intro.summaryTitle')}
           </Typography>
-          <Typography paragraph>
-            Aliens in Valheim es un mod narrativo dividido en fases que integra
-            ciencia ficción con la mitología nórdica. El contenido evoluciona
-            progresivamente y enfatiza la cooperación, la progresión y eventos
-            globales en el servidor.
-          </Typography>
+          <Typography paragraph>{t('intro.summaryText')}</Typography>
         </TabPanel>
 
         <TabPanel value={value} index={1}>
           <Typography variant="h6" gutterBottom>
-            Items del mundo
+            {t('items.worldTitle')}
           </Typography>
-          <Typography paragraph>
-            Personajes: alienígenas grises, humanoides mutados y soldados
-            biomecánicos.
-          </Typography>
-          <Typography paragraph>
-            Objetos: fragmentos tecnológicos, armas experimentales (rayos,
-            escudos, chips de control), ítems de progresión narrativa.
-          </Typography>
+          <Typography paragraph>{t('items.characters')}</Typography>
+          <Typography paragraph>{t('items.objects')}</Typography>
 
           <Typography variant="subtitle1" sx={{ mt: 2 }}>
-            Reglas de negocio
+            {t('items.rulesTitle')}
           </Typography>
           <List dense>
-            <ListItem>
-              <ListItemText primary="Detección de jugadores solitarios para eventos." />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Cooperación como mecánica central." />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Progresión lineal de fases sincronizada con el servidor." />
-            </ListItem>
+            {t('items.rules', { returnObjects: true }).map((r: string, i: number) => (
+              <ListItem key={i}>
+                <ListItemText primary={r} />
+              </ListItem>
+            ))}
           </List>
         </TabPanel>
 
         <TabPanel value={value} index={2}>
           <Typography variant="h6" gutterBottom>
-            Fase 1 - Abducción
+            {t('phase1.title')}
           </Typography>
-          <Typography paragraph>
-            Durante noches oscuras aparece un OVNI que detecta jugadores
-            solitarios y comienza una secuencia de abducción. El jugador
-            abducido debe resistir mediante un minijuego; aliados pueden
-            intervenir para salvarlo.
-          </Typography>
-          <Typography paragraph>
-            Mecánicas clave: minijuego de resistencia, intervención cooperativa,
-            escudo de la nave, crash dinámico y eventos impredecibles.
-          </Typography>
+          <Typography paragraph>{t('phase1.text')}</Typography>
+          <Typography paragraph>{t('phase1.mechanics')}</Typography>
         </TabPanel>
 
         <TabPanel value={value} index={3}>
           <Typography variant="h6" gutterBottom>
-            Fase 2 - Ataque Total
+            {t('phase2.title')}
           </Typography>
-          <Typography paragraph>
-            Tras las abducciones la invasión escala a ataques coordinados contra
-            concentraciones de jugadores: lluvia de rayos, criaturas
-            biotecnológicas y tropas élite en tierra con poderes psíquicos.
-          </Typography>
-          <Typography paragraph>
-            Mecánicas: detección de actividad grupal, ataques aéreos, poderes
-            que alteran controles y visión, eventos &quot;nido temporal&quot; y
-            sistema de reputación.
-          </Typography>
+          <Typography paragraph>{t('phase2.text')}</Typography>
         </TabPanel>
 
         <TabPanel value={value} index={4}>
           <Typography variant="h6" gutterBottom>
-            Fase 3 - Señales y Exploración
+            {t('phase3.title')}
           </Typography>
-          <Typography paragraph>
-            Tras el ataque viene la exploración: los jugadores deben localizar
-            señales, fragmentos y ruinas que apuntan a la colmena. Se introducen
-            herramientas de escaneo, traducción de glifos y una progresión
-            colectiva de descubrimiento.
-          </Typography>
+          <Typography paragraph>{t('phase3.text')}</Typography>
         </TabPanel>
 
         <TabPanel value={value} index={5}>
           <Typography variant="h6" gutterBottom>
-            Fase 4 - Combate Final: La Colmena
+            {t('phase4.title')}
           </Typography>
-          <Typography paragraph>
-            La colmena es una megastructura viviente; el enfrentamiento final se
-            divide en etapas con mecánicas de desactivación de nodos, combate
-            contra copias del jefe y una fase núcleo con manipulación de energía
-            y gravedad.
-          </Typography>
-          <Typography paragraph>
-            Recompensas: armaduras alienígenas épicas, armas tecnológicas y el
-            arma legendaria &quot;Martillo de Thor&quot; como recompensa secreta.
-          </Typography>
+          <Typography paragraph>{t('phase4.text')}</Typography>
+          <Typography paragraph>{t('phase4.rewards')}</Typography>
         </TabPanel>
       </Container>
     </>
