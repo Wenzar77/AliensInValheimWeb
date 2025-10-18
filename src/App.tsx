@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import logo from './logo.svg';
 import './i18n'; // inicializa i18n
 import { useTranslation } from 'react-i18next';
 import {
@@ -72,6 +71,44 @@ function FlagIcon({ country }: { country: 'es' | 'en' }) {
   );
 }
 
+function UfoIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      width="40"
+      height="40"
+      role="img"
+      aria-hidden
+      {...props}
+    >
+      <defs>
+        <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stopColor="#9be7ff" />
+          <stop offset="1" stopColor="#6ec6ff" />
+        </linearGradient>
+        <linearGradient id="g2" x1="0" x2="1">
+          <stop offset="0" stopColor="#ddd" />
+          <stop offset="1" stopColor="#bbb" />
+        </linearGradient>
+      </defs>
+
+      <ellipse cx="32" cy="20" rx="14" ry="8" fill="url(#g1)" />
+      <ellipse cx="32" cy="20" rx="12" ry="6" fill="rgba(255,255,255,0.15)" />
+      <ellipse cx="32" cy="32" rx="22" ry="10" fill="url(#g2)" />
+      <ellipse cx="32" cy="34" rx="20" ry="6" fill="#9aa" />
+      <g fill="#ffd54f">
+        <circle cx="10" cy="34" r="2.2" />
+        <circle cx="20" cy="36" r="2.2" />
+        <circle cx="32" cy="37" r="2.2" />
+        <circle cx="44" cy="36" r="2.2" />
+        <circle cx="54" cy="34" r="2.2" />
+      </g>
+      <ellipse cx="32" cy="44" rx="18" ry="6" fill="rgba(158,219,255,0.12)" />
+      <path d="M10 34 C14 26, 50 26, 54 34" fill="none" stroke="#667" strokeWidth="1" />
+    </svg>
+  );
+}
+
 function App(): JSX.Element {
   const { t, i18n } = useTranslation();
   const [value, setValue] = useState<number>(0);
@@ -89,12 +126,7 @@ function App(): JSX.Element {
       <CssBaseline />
       <AppBar position="static">
         <Toolbar>
-          <img
-            src={logo}
-            className="App-logo"
-            alt="logo"
-            style={{ width: 40, marginRight: 12 }}
-          />
+          <UfoIcon style={{ width: 40, height: 40, marginRight: 12 }} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {t('app.title')}
           </Typography>
