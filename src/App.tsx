@@ -16,6 +16,7 @@ import {
   ListItemText,
   Button,
 } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -109,6 +110,15 @@ function UfoIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+// Tema oscuro: fondo negro y texto blanco
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    background: { default: '#000000' },
+    text: { primary: '#ffffff', secondary: '#cccccc' },
+  },
+});
+
 function App(): JSX.Element {
   const { t, i18n } = useTranslation();
   const [value, setValue] = useState<number>(0);
@@ -122,7 +132,7 @@ function App(): JSX.Element {
   };
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar position="static">
         <Toolbar>
@@ -265,7 +275,7 @@ function App(): JSX.Element {
           <Typography paragraph>{t('phase4.rewards')}</Typography>
         </TabPanel>
       </Container>
-    </>
+    </ThemeProvider>
   );
 }
 
