@@ -16,7 +16,7 @@ const resources = {
         "phase4": "Phase 4 - Hive"
       },
       "intro": {
-        "summaryTitle": "Summary",
+        "summaryTitle": "Introduction",
         "summaryText": "Aliens in Valheim is a narrative mod divided into phases combining science fiction with Norse mythology. Content evolves progressively emphasizing cooperation, progression and global server events."
       },
       "items": {
@@ -64,7 +64,7 @@ const resources = {
         "phase4": "Fase 4 - Colmena"
       },
       "intro": {
-        "summaryTitle": "Resumen",
+        "summaryTitle": "Introducción",
         "summaryText": "Aliens in Valheim es un mod narrativo dividido en fases que integra ciencia ficción con la mitología nórdica. El contenido evoluciona progresivamente y enfatiza la cooperación, la progresión y eventos globales en el servidor."
       },
       "items": {

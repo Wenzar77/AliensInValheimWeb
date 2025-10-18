@@ -49,10 +49,10 @@ function FlagIcon({ country }: { country: 'es' | 'en' }) {
   if (country === 'es') {
     return (
       <svg width="20" height="14" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-        <rect width="60" height="40" fill="#AA151B"/>
-        <rect y="10" width="60" height="20" fill="#F1BF00"/>
-        <rect y="0" width="60" height="8" fill="#AA151B"/>
-        <rect y="32" width="60" height="8" fill="#AA151B"/>        
+        <rect width="60" height="40" fill="#AA151B" />
+        <rect y="10" width="60" height="20" fill="#F1BF00" />
+        <rect y="0" width="60" height="8" fill="#AA151B" />
+        <rect y="32" width="60" height="8" fill="#AA151B" />
       </svg>
     );
   }
@@ -60,13 +60,13 @@ function FlagIcon({ country }: { country: 'es' | 'en' }) {
   // 'en' -> United Kingdom (simplified)
   return (
     <svg width="20" height="14" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-      <rect width="60" height="40" fill="#012169"/>
-      <path d="M0 0 L60 40 M60 0 L0 40" stroke="#fff" strokeWidth="6"/>
-      <path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8102E" strokeWidth="4"/>
-      <rect x="26" width="8" height="40" fill="#fff"/>
-      <rect y="16" width="60" height="8" fill="#fff"/>
-      <rect x="27" width="6" height="40" fill="#C8102E"/>
-      <rect y="17" width="60" height="6" fill="#C8102E"/>
+      <rect width="60" height="40" fill="#012169" />
+      <path d="M0 0 L60 40 M60 0 L0 40" stroke="#fff" strokeWidth="6" />
+      <path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8102E" strokeWidth="4" />
+      <rect x="26" width="8" height="40" fill="#fff" />
+      <rect y="16" width="60" height="8" fill="#fff" />
+      <rect x="27" width="6" height="40" fill="#C8102E" />
+      <rect y="17" width="60" height="6" fill="#C8102E" />
     </svg>
   );
 }
@@ -169,16 +169,31 @@ function App(): JSX.Element {
         </Box>
 
         <TabPanel value={value} index={0}>
+
           <Typography variant="h5" gutterBottom>
             {t('intro.summaryTitle')}
           </Typography>
           <Typography paragraph>{t('intro.summaryText')}</Typography>
+
+          <Box
+            component="img"
+            src="/portada.png"
+            alt="UFO"
+            sx={{ maxWidth: '50%', height: 'auto', borderRadius: 2, my: 2 }}
+          />
         </TabPanel>
 
         <TabPanel value={value} index={1}>
           <Typography variant="h6" gutterBottom>
             {t('items.worldTitle')}
           </Typography>
+
+          <Box
+            component="img"
+            src="/portada3.png"
+            alt="UFO"
+            sx={{ maxWidth: '50%', height: 'auto', borderRadius: 2, my: 2 }}
+          />
           <Typography paragraph>{t('items.characters')}</Typography>
           <Typography paragraph>{t('items.objects')}</Typography>
 
@@ -191,8 +206,8 @@ function App(): JSX.Element {
               const rulesArray = Array.isArray(rulesRaw)
                 ? (rulesRaw as string[])
                 : typeof rulesRaw === 'string'
-                ? [rulesRaw]
-                : [];
+                  ? [rulesRaw]
+                  : [];
               return rulesArray.map((r: string, i: number) => (
                 <ListItem key={i}>
                   <ListItemText primary={r} />
@@ -206,6 +221,12 @@ function App(): JSX.Element {
           <Typography variant="h6" gutterBottom>
             {t('phase1.title')}
           </Typography>
+          <Box
+            component="img"
+            src="/portada4.png"
+            alt="UFO"
+            sx={{ maxWidth: '50%', height: 'auto', borderRadius: 2, my: 2 }}
+          />
           <Typography paragraph>{t('phase1.text')}</Typography>
           <Typography paragraph>{t('phase1.mechanics')}</Typography>
         </TabPanel>
@@ -214,6 +235,12 @@ function App(): JSX.Element {
           <Typography variant="h6" gutterBottom>
             {t('phase2.title')}
           </Typography>
+          <Box
+            component="img"
+            src="/portada5.png"
+            alt="UFO"
+            sx={{ maxWidth: '50%', height: 'auto', borderRadius: 2, my: 2 }}
+          />
           <Typography paragraph>{t('phase2.text')}</Typography>
         </TabPanel>
 
@@ -221,6 +248,12 @@ function App(): JSX.Element {
           <Typography variant="h6" gutterBottom>
             {t('phase3.title')}
           </Typography>
+            <Box
+            component="img"
+            src="/portada2.png"
+            alt="UFO"
+            sx={{ maxWidth: '50%', height: 'auto', borderRadius: 2, my: 2 }}
+          />
           <Typography paragraph>{t('phase3.text')}</Typography>
         </TabPanel>
 
