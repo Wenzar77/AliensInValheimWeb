@@ -116,11 +116,19 @@ function App(): JSX.Element {
             {t('items.rulesTitle')}
           </Typography>
           <List dense>
-            {t('items.rules', { returnObjects: true }).map((r: string, i: number) => (
-              <ListItem key={i}>
-                <ListItemText primary={r} />
-              </ListItem>
-            ))}
+            {(() => {
+              const rulesRaw = t('items.rules', { returnObjects: true }) as unknown;
+              const rulesArray = Array.isArray(rulesRaw)
+                ? (rulesRaw as string[])
+                : typeof rulesRaw === 'string'
+                ? [rulesRaw]
+                : [];
+              return rulesArray.map((r: string, i: number) => (
+                <ListItem key={i}>
+                  <ListItemText primary={r} />
+                </ListItem>
+              ));
+            })()}
           </List>
         </TabPanel>
 
