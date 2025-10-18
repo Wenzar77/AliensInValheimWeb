@@ -45,6 +45,33 @@ function a11yProps(index: number) {
   } as const;
 }
 
+// Componente pequeño que renderiza banderas inline (sin dependencias)
+function FlagIcon({ country }: { country: 'es' | 'en' }) {
+  if (country === 'es') {
+    return (
+      <svg width="20" height="14" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <rect width="60" height="40" fill="#AA151B"/>
+        <rect y="10" width="60" height="20" fill="#F1BF00"/>
+        <rect y="0" width="60" height="8" fill="#AA151B"/>
+        <rect y="32" width="60" height="8" fill="#AA151B"/>        
+      </svg>
+    );
+  }
+
+  // 'en' -> United Kingdom (simplified)
+  return (
+    <svg width="20" height="14" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+      <rect width="60" height="40" fill="#012169"/>
+      <path d="M0 0 L60 40 M60 0 L0 40" stroke="#fff" strokeWidth="6"/>
+      <path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8102E" strokeWidth="4"/>
+      <rect x="26" width="8" height="40" fill="#fff"/>
+      <rect y="16" width="60" height="8" fill="#fff"/>
+      <rect x="27" width="6" height="40" fill="#C8102E"/>
+      <rect y="17" width="60" height="6" fill="#C8102E"/>
+    </svg>
+  );
+}
+
 function App(): JSX.Element {
   const { t, i18n } = useTranslation();
   const [value, setValue] = useState<number>(0);
@@ -71,10 +98,21 @@ function App(): JSX.Element {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {t('app.title')}
           </Typography>
-          <Button color="inherit" onClick={() => setLang('es')}>
+
+          {/* Botones de idioma usando banderas SVG (más consistentes que emojis) */}
+          <Button
+            color="inherit"
+            onClick={() => setLang('es')}
+            startIcon={<FlagIcon country="es" />}
+          >
             {t('lang.es')}
           </Button>
-          <Button color="inherit" onClick={() => setLang('en')}>
+
+          <Button
+            color="inherit"
+            onClick={() => setLang('en')}
+            startIcon={<FlagIcon country="en" />}
+          >
             {t('lang.en')}
           </Button>
         </Toolbar>
