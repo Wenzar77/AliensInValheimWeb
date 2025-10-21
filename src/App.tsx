@@ -17,6 +17,8 @@ import {
   Button,
 } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import YouTube from 'react-youtube';
+import YouTubePlayer from './YouTubePlayer';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -121,6 +123,8 @@ function App() {
     void i18n.changeLanguage(lng);
   };
 
+
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -160,10 +164,12 @@ function App() {
           <Typography variant="h5" gutterBottom>
             {t('intro.summaryTitle')}
           </Typography>
-          <Typography paragraph>{t('intro.summaryText')}</Typography>
 
-          <Box component="img" src="/portada.png" alt="UFO" sx={{ maxWidth: '50%', height: 'auto', borderRadius: 2, my: 2 }}
+
+          <Typography paragraph>{t('intro.summaryText')}</Typography>          
+          <Box component="img" src="/portada.png" alt="UFO" sx={{ maxWidth: '50%', height: 'auto', borderRadius: 2, my: 2 }}          
           />
+          <YouTubePlayer videoId="zcdXl-Bn5PE" autoplay/>
         </TabPanel>
 
         <TabPanel value={value} index={1}>
