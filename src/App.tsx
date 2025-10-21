@@ -17,7 +17,6 @@ import {
   Button,
 } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import YouTube from 'react-youtube';
 import YouTubePlayer from './YouTubePlayer';
 
 interface TabPanelProps {
