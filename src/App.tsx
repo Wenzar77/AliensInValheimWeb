@@ -15,6 +15,7 @@ import {
   ListItem,
   ListItemText,
   Button,
+  Paper,
 } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import YouTubePlayer from './YouTubePlayer';
@@ -122,8 +123,6 @@ function App() {
     void i18n.changeLanguage(lng);
   };
 
-
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -139,36 +138,33 @@ function App() {
             {t('lang.es')}
           </Button>
 
-          <Button color="inherit" onClick={() => setLang('en')} startIcon={<FlagIcon country="en" />}
-          >
+          <Button color="inherit" onClick={() => setLang('en')} startIcon={<FlagIcon country="en" />}>
             {t('lang.en')}
           </Button>
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="lg" sx={{ mt: 3 }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Paper sx={{ p: 0 }}>
+        <Container>
           <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label={t('app.title') as string}
           >
             <Tab label={t('tabs.intro')} {...a11yProps(0)} />
             <Tab label={t('tabs.items')} {...a11yProps(1)} />
             <Tab label={t('tabs.phase1')} {...a11yProps(2)} />
-            <Tab label={t('tabs.phase2')} {...a11yProps(3)} />
-            <Tab label={t('tabs.phase3')} {...a11yProps(4)} />
-            <Tab label={t('tabs.phase4')} {...a11yProps(5)} />
+            <Tab label={t('tabs.phase2')} {...a11yProps(3)} />            
           </Tabs>
-        </Box>
+        </Container>
 
         <TabPanel value={value} index={0}>
-          <Typography variant="h5" gutterBottom>
-            {t('intro.summaryTitle')}
-          </Typography>
+          <Container sx={{ m: 2 }}>
+            <Typography variant="h5" gutterBottom>
+              {t('intro.summaryTitle')}
+            </Typography>
+            <Box component="img" src="/portada.png" alt="UFO" sx={{ maxWidth: '70%', height: 'auto', borderRadius: 2, my: 2 }}></Box>
 
-
-          <Typography paragraph>{t('intro.summaryText')}</Typography>          
-          <Box component="img" src="/portada.png" alt="UFO" sx={{ maxWidth: '50%', height: 'auto', borderRadius: 2, my: 2 }}          
-          />
-          <YouTubePlayer videoId="zcdXl-Bn5PE" autoplay/>
+            <Typography sx={{m:3, textAlign:'justify'}}>{t('intro.summaryText')}</Typography>
+            <YouTubePlayer videoId="zcdXl-Bn5PE" autoplay />
+          </Container>
         </TabPanel>
 
         <TabPanel value={value} index={1}>
@@ -236,7 +232,7 @@ function App() {
           <Typography paragraph>{t('phase4.text')}</Typography>
           <Typography paragraph>{t('phase4.rewards')}</Typography>
         </TabPanel>
-      </Container>
+      </Paper>
     </ThemeProvider>
   );
 }
